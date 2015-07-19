@@ -1,0 +1,36 @@
+<head>
+  <title>New Product</title>
+</head>
+
+<body>
+  <p><h1>New Product</h1></p>
+  
+  
+  
+  <p>Enter information about a new product.<p>
+  
+  <%= form_for :product, url: products_path do |f| %>
+  
+  <%= render 'products/error_messages' %>
+
+  
+ <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+ 
+  
+<% end %>
+  
+</body>
+
+ 
