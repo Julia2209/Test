@@ -1,20 +1,9 @@
-<head>
-  <title>New Product</title>
-</head>
-
-<body>
-  <p><h1>New Product</h1></p>
-  
-  
-  
-  <p>Enter information about a new product.<p>
+<p><h1>Enter information about a new product</h1></p>
   
   <%= form_for :product, url: products_path do |f| %>
   
   <%= render 'products/error_messages' %>
-
-  
- <p>
+  <p>
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </p>
@@ -30,7 +19,4 @@
  
   <%= link_to 'Back', products_path %>
 <% end %>
-  
-</body>
-
  
