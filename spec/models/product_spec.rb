@@ -14,12 +14,12 @@ describe Product do
   
   describe "name is not present" do
     before { @product.name = " " }
-    it { should_not be_valid }
+    it { expect(@product).to_not be_valid }
   end
   
   describe "name length" do
     before {  @product.name = "a" * 50 }
-    it { should_not be_valid }
+    it { expect(@product).to_not be_valid }
   end
   
   describe "name unique" do
@@ -28,7 +28,7 @@ describe Product do
       same_product.save
     end
     
-    it { should_not be_valid }
+    it { expect(@product).to_not be_valid }
   end
   
   describe "name register" do
@@ -38,6 +38,6 @@ describe Product do
       same_product.save
     end
     
-    it { should_not be_valid }
+    it { expect(@product).to_not be_valid }
   end
 end

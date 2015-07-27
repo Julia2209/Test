@@ -26,7 +26,6 @@ class ProductsController < ApplicationController
   end
   
   def update
- 
     if @product.update(product_params)
       redirect_to products_url
     else
