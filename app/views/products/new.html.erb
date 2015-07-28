@@ -1,6 +1,6 @@
 <p><h1>Enter information about a new product</h1></p>
   
-  <%= form_for :product, url: products_path do |f| %>
+  <%= form_for @product do |f| %>
   
   <%= render 'products/error_messages' %>
   <p>

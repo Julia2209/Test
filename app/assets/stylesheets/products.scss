@@ -8,9 +8,8 @@
 //table{
 //  border: 1px solid black;
 //}
-th {
-    font-family:Arial;
-  }
-td{
-    font-family:TimeNewRoman;
-  }
+th { font-family:Arial; }
+  
+td{ font-family:TimeNewRoman; }
+  
+.deleteAction{ color: blue; border-bottom: 1px solid; cursor: pointer; }
