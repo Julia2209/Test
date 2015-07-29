@@ -1,53 +1,48 @@
 require 'rails_helper'
 
 RSpec.describe ProductsController, type: :controller do
-  
-  describe "create action" do
-    it "redirect to products" do
-      post :create, product: { name: "Prod1", description: "Desc1" }
-      expect(@product).to redirect_to(products_url)
-    end
+
+  describe "edit action" do
+    before { @product = create(:product) }
     
-    it "rediredt to new" do
-      post :create, product: { description: "Des1" }
-      expect(@product).to render_template('new')
-    end
+    before { get :edit, id: @product.id }
+    
+    it { should render_template :edit }
   end
   
   describe "new action" do
-    it "shoud render to new" do
-      get :new, product: { name: "Prod1", description: "Desc1" }
-      expect(@product).to render_template('new')
-    end
-  end
-  
-  describe "edit action" do
-    it "redirect to edit" do
-      product = create(:product)
-      get :edit, id: product.id
-      expect(product).to render_template('edit')
-    end
+    before { get :new, product: { name: "Product new" } }
+    
+    it { should render_template :new }
   end
   
   describe "destroy action" do
-    it "redirect to index product" do
-      product = create(:product)
-      delete :destroy, id: product.id 
-      expect(product).to redirect_to(products_path)
-    end
+    let(:product) { stub_model Product }
+    
+    before { expect(Product).to receive(:find).with('10').and_return(product) }
+    
+    before { expect(product).to receive(:destroy).and_return(true) }
+    
+    before { delete :destroy, id: 10 }
+    
+    it { should render_template :destroy }
   end
   
-  describe "update action" do
-    it "redirect to index product" do
-      product = create(:product)
-      patch :update, id: product.id, product: {name: "Beer"}
-      expect(product).to redirect_to(products_path)
-    end
+  describe "create action" do
+    before { @product = stub_model Product }
     
-    it "render edit template" do
-      product = create(:product)
-      patch :update, id: product.id, product: {name: ""}
-      expect(product).to render_template('edit')
+    before { expect(Product).to receive(:new).with('name' => 'Beer', 'description' => 'Good').and_return(@product) }
+    
+    context do
+      before { expect(@product).to receive(:save).and_return(true) }
+      
+      before { post :create, product: { name: "Beer", description: "Good" } }
+      
+      it { should render_template :create }
     end
   end
 end
+
+
+
+ 
