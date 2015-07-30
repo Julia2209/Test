@@ -70,8 +70,6 @@ RSpec.describe ProductsController, type: :controller do
     
     it { should redirect_to(products_url) }
   end
-  
-  
 end
 
 
